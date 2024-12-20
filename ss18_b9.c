@@ -126,7 +126,7 @@ void deleted(ma *a){
 			strcpy(a[i].name,a[i+1].name);
 			a[i].price=a[i+1].price;
 		}
-		}
+	}
 	for(int i=1;i<=5-1;i++){
 	printf("\nMon an thu %d", i);
 		printf("\n=================");
@@ -137,6 +137,7 @@ void deleted(ma *a){
 }
 
 void find(ma *a){
+	int xpos;
 	int cnt=0;
 	char x[50];
 	fflush(stdin);
@@ -155,26 +156,28 @@ void find(ma *a){
 }
 
 void find2(ma *a){
-	int L=0;
+	int L=1;
 	int R=5;
-	int xpos;
+	int m;
+	float xvalue;
 	char x[50];
 	fflush(stdin);
 	printf("nhap mon an ban muon tim kiem:");
 	gets(x);
 	for(int i=1;i<=5;i++){
 		if(strcmp(a[i].name,x)==0){
-			xpos=i;
+			xvalue=a[i].price;
 		}
 	}
-	while(L>=R){
-		int m=(L+R)/2;
-		if(xpos>m){
-			L=m+1;
-		}else if(xpos<m){
+	while(L<=R){
+		m=(L+R)/2;
+		if(a[m].price>xvalue){
 			R=m-1;
+		}else if(a[m].price<xvalue){
+			L=m+1;
 		}else{
 			printf("tim thay mon an %s o vi tri %d", x,m+1);
+			break;
 		}
 	}
 }
